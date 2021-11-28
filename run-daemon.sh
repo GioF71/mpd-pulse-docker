@@ -8,8 +8,8 @@ GROUP_UID=$(id -g)
 echo "USER_UID = ${USER_UID}"
 echo "GROUP_UID = ${GROUP_UID}"
 
-docker run -t -i \
-  --rm \
+docker run -d \
+  --name=mpd-pulse \
   -u $USER_UID:$GROUP_UID \
   --name mpd-pulse \
   --network=host \

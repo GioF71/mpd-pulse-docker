@@ -9,17 +9,23 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install pulseaudio-utils -y
 
 RUN rm -rf /var/lib/apt/lists/*
 
-ENV USER_GROUP_ID=1000
+ARG ARG_UID=1000
+ARG ARG_GID=1000
+
+RUN echo "ARG_UID = ${ARG_UID}"
+RUN echo "ARG_GID = ${ARG_GID}"
+
+#ENV USER_GROUP_ID=1000
 
 # Set up the user
-RUN export UNAME=$UNAME UID=${USER_GROUP_ID} GID=${USER_GROUP_ID} && \
+RUN export UNAME=$UNAME UID=${ARG_UID} GID=${ARG_GID} && \
     mkdir -p "/home/${UNAME}" && \
-    echo "${UNAME}:x:${UID}:${GID}:${UNAME} User,,,:/home/${UNAME}:/bin/bash" >> /etc/passwd && \
-    echo "${UNAME}:x:${UID}:" >> /etc/group && \
+    echo "${UNAME}:x:${ARG_UID}:${ARG_GID}:${UNAME} User,,,:/home/${UNAME}:/bin/bash" >> /etc/passwd && \
+    echo "${UNAME}:x:${ARG_UID}:" >> /etc/group && \
     mkdir -p /etc/sudoers.d && \
     echo "${UNAME} ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/${UNAME} && \
     chmod 0440 /etc/sudoers.d/${UNAME} && \
-    chown ${UID}:${GID} -R /home/${UNAME} && \
+    chown ${ARG_UID}:${ARG_GID} -R /home/${UNAME} && \
     gpasswd -a ${UNAME} audio
 
 RUN groups $UNAME
@@ -68,7 +74,7 @@ RUN mkdir -p /home/$UNAME/music
 RUN mkdir -p /home/$UNAME/playlists
 
 RUN id mpd
-RUN chown -R ${USER_GROUP_ID}:${USER_GROUP_ID} /home/$UNAME
+RUN chown -R ${ARG_UID}:${ARG_GID} /home/$UNAME
 
 USER $UNAME
 ENV HOME /home/$UNAME
