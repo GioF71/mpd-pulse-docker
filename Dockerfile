@@ -9,9 +9,10 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install pulseaudio-utils -y
 
 RUN rm -rf /var/lib/apt/lists/*
 
+ENV USER_GROUP_ID=1000
 
 # Set up the user
-RUN export UNAME=$UNAME UID=1000 GID=1000 && \
+RUN export UNAME=$UNAME UID=${USER_GROUP_ID} GID=${USER_GROUP_ID} && \
     mkdir -p "/home/${UNAME}" && \
     echo "${UNAME}:x:${UID}:${GID}:${UNAME} User,,,:/home/${UNAME}:/bin/bash" >> /etc/passwd && \
     echo "${UNAME}:x:${UID}:" >> /etc/group && \
@@ -21,14 +22,14 @@ RUN export UNAME=$UNAME UID=1000 GID=1000 && \
     chown ${UID}:${GID} -R /home/${UNAME} && \
     gpasswd -a ${UNAME} audio
 
-RUN groups mpd
+RUN groups $UNAME
 
 COPY assets/pulse-client.conf /etc/pulse/client.conf
 
 
 #RUN mkdir -p /home/mpd/.mpd
 
-RUN chown -R ${UID}:${GID} /home/${UNAME}
+#RUN chown -R ${UID}:${GID} /home/${UNAME}
 #RUN chown -R mpd:mpd /home/mpd/*
 
 #VOLUME /home/mpd/.mpd/db
@@ -67,8 +68,7 @@ RUN mkdir -p /home/$UNAME/music
 RUN mkdir -p /home/$UNAME/playlists
 
 RUN id mpd
-RUN chown -R 1000:1000 /home/$UNAME
-#RUN chown -R mpd:audio /home/$UNAME
+RUN chown -R ${USER_GROUP_ID}:${USER_GROUP_ID} /home/$UNAME
 
 USER $UNAME
 ENV HOME /home/$UNAME
