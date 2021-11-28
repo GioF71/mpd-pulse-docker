@@ -1,14 +1,13 @@
 #from ubuntu:focal
-FROM giof71/mpd-base-image
+FROM giof71/mpd-base-image:ubuntu-focal
+
+RUN apt-get update
+
+RUN DEBIAN_FRONTEND=noninteractive apt-get install pulseaudio-utils -y
+
+RUN rm -rf /var/lib/apt/lists/*
 
 ENV UNAME mpd
-
-#RUN apt-get update
-#RUN apt-get install mpd -y
-
-#RUN DEBIAN_FRONTEND=noninteractive apt-get install pulseaudio-utils -y
-
-#RUN rm -rf /var/lib/apt/lists/*
 
 ARG ARG_UID=1000
 ARG ARG_GID=1000
