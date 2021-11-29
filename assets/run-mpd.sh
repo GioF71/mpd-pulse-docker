@@ -20,7 +20,6 @@ fi
 if [ ! $(getent group $GROUP_NAME) ]; then
   echo "group $GROUP_NAME does not exist, creating..."
   groupadd -g $PGID $GROUP_NAME
-  #cat /etc/group
 else
   echo "group $GROUP_NAME already exists."
 fi
@@ -30,7 +29,6 @@ if [ ! $(getent passwd $USER_NAME) ]; then
   echo "user $USER_NAME does not exist, creating..."
   useradd -g $PGID -u $PUID -s /bin/bash -M -d $HOME_DIR $USER_NAME
   usermod -a -G audio $USER_NAME
-  #cat /etc/passwd
   id $USER_NAME
   echo "user $USER_NAME created."
 else
@@ -87,5 +85,5 @@ cat /etc/mpd.conf
 echo "About to sleep for $STARTUP_DELAY_SEC second(s)"
 sleep $STARTUP_DELAY_SEC
 echo "Ready to start."
-#/usr/bin/mpd --stderr --no-daemon --verbose /etc/mpd.conf
+
 su - $USER_NAME -c "/usr/bin/mpd --stderr --no-daemon /etc/mpd.conf"
