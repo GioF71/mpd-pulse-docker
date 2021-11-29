@@ -35,19 +35,6 @@ else
   echo "user $USER_NAME already exists."
 fi
 
-### add user to sudoers
-SUDOERS_FILE="/etc/sudoers.d/${USER_NAME}"
-if [ ! -f $SUDOERS_FILE ]; then 
-  echo "Sudoers file [$SUDOERS_FILE] not found, creating..."
-  mkdir -p /etc/sudoers.d
-  echo "${USER_NAME} ALL=(ALL) NOPASSWD: ALL" > $SUDOERS_FILE
-  chmod 0440 $SUDOERS_FILE
-  ls -la $SUDOERS_FILE
-  cat $SUDOERS_FILE
-else 
-  echo "Sudoers file [$SUDOERS_FILE] already exists."
-fi
-
 PULSE_CLIENT_CONF="/etc/pulse/client.conf"
 
 echo "Creating pulseaudio configuration file $PULSE_CLIENT_CONF..."
