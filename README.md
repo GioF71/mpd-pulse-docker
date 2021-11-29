@@ -55,7 +55,7 @@ You can start mpd-pulse by simply typing:
     -e PUID=$(id -u) \
     -e PGID=$(id -g) \
     -v /run/user/$(id -u)/pulse:/run/user/$(id -u)/pulse \
-    -v /mnt/music:/music \
+    -v /mnt/music:/music:ro \
     -v ${HOME}/mpd-playlists:/playlists \
     -v ${HOME}/mpd-db:/db \
     giof71/mpd-pulse:2021-11-29
@@ -63,6 +63,14 @@ You can start mpd-pulse by simply typing:
 
 Note that we need to allow the container to access the pulseaudio by mounting `/run/user/$(id -u)/pulse`, which typically translates to `/run/user/1000/pulse`.  
 We also need to give access to port 6600 so we can control the newly created mpd instance with our favourite mpd client.
+
+The following tables reports the volumes
+
+VOLUME|DESCRIPTION
+---|---
+/db|Where the mpd database is saved
+/music|Where the music is stored. you might consider to mount your directory in read-only mode (`:ro`)
+/playlists|Where the playlists are stored
 
 The following tables reports all the currently supported environment variables.
 
