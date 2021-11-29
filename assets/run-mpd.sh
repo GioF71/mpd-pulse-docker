@@ -11,9 +11,6 @@ id mpd
 if [ ! -d "$HOME_DIR" ]; then
   echo "Home directory [$HOME_DIR] not found, creating."
   mkdir -p $HOME_DIR
-  mkdir -p $HOME_DIR/db
-  mkdir -p $HOME_DIR/music
-  mkdir -p $HOME_DIR/playlists
   chown -R $PUID:$PGID $HOME_DIR
   ls -la $HOME_DIR -d
   ls -la $HOME_DIR

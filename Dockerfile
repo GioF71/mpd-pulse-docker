@@ -44,6 +44,10 @@ COPY assets/mpd-template.conf /app/assets/mpd-template.conf
 #VOLUME /home/mpd/.mpd/music
 #VOLUME /home/mpd/.mpd/playlists
 
+VOLUME /music
+VOLUME /playlists
+VOLUME /db
+
 EXPOSE 6600
 
 ENV PUID 1000
