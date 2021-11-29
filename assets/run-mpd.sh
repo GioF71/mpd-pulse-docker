@@ -74,11 +74,11 @@ sed -i 's/TIDAL_USERNAME/'"$TIDAL_USERNAME"'/g' /etc/mpd.conf
 sed -i 's/TIDAL_PASSWORD/'"$TIDAL_PASSWORD"'/g' /etc/mpd.conf
 sed -i 's/TIDAL_AUDIOQUALITY/'"$TIDAL_AUDIOQUALITY"'/g' /etc/mpd.conf
 
-#sed -i 's/REPLAYGAIN_MODE/'"$REPLAYGAIN_MODE"'/g' /etc/mpd.conf
-#sed -i 's/REPLAYGAIN_PREAMP/'"$REPLAYGAIN_PREAMP"'/g' /etc/mpd.conf
-#sed -i 's/REPLAYGAIN_MISSING_PREAMP/'"$REPLAYGAIN_MISSING_PREAMP"'/g' /etc/mpd.conf
-#sed -i 's/REPLAYGAIN_LIMIT/'"$REPLAYGAIN_LIMIT"'/g' /etc/mpd.conf
-#sed -i 's/VOLUME_NORMALIZATION/'"$VOLUME_NORMALIZATION"'/g' /etc/mpd.conf
+sed -i 's/REPLAYGAIN_MODE/'"$REPLAYGAIN_MODE"'/g' /etc/mpd.conf
+sed -i 's/REPLAYGAIN_PREAMP/'"$REPLAYGAIN_PREAMP"'/g' /etc/mpd.conf
+sed -i 's/REPLAYGAIN_MISSING_PREAMP/'"$REPLAYGAIN_MISSING_PREAMP"'/g' /etc/mpd.conf
+sed -i 's/REPLAYGAIN_LIMIT/'"$REPLAYGAIN_LIMIT"'/g' /etc/mpd.conf
+sed -i 's/VOLUME_NORMALIZATION/'"$VOLUME_NORMALIZATION"'/g' /etc/mpd.conf
 
 cat /etc/mpd.conf
 
