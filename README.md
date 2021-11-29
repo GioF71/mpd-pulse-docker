@@ -31,10 +31,9 @@ This command will output one line if the current user does belong to the "docker
 The Dockerfile and the included scripts have been tested on the following distros:
 
 - Manjaro Linux with Gnome (amd64)
-- Asus Tinkerboard
-- Raspberry Pi 3 (but I have no reason to doubt it will also work on a Raspberry Pi 4/400)
 
 As I test the Dockerfile on more platforms, I will update this list.
+I am maintaining images for arm, but I have not tried to deploy the image on a Raspberry Pi or on a Asus Tinkerboard yet.
 
 ## Get the image
 
@@ -67,25 +66,25 @@ We also need to give access to port 6600 so we can control the newly created mpd
 
 The following tables reports all the currently supported environment variables.
 
-| VARIABLE            | DEFAULT         | NOTES                                                                                                                                                                                                                                                                                                                                                         |
-| ------------------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| REPLAYGAIN_MODE | 0 | ReplayGain mode |
-| REPLAYGAIN_PREAMP | 0 | ReplayGain Preamp |
-| REPLAYGAIN_MISSING_PREAMP | 0 | ReplayGain mising preamp |
-| REPLAYGAIN_LIMIT | yes | ReplayGain Limit |
-| VOLUME_NORMALIZATION | no | Volume normalization |
-| QOBUZ_PLUGIN_ENABLED     | no | Enables the Qobuz plugin |
-| QOBUZ_APP_ID     | ID | Qobuz application id |
-| QOBUZ_APP_SECRET     | SECRET | Your Qobuz application Secret |
-| QOBUZ_USERNAME     | USERNAME | Qobuz account username |
-| QOBUZ_PASSWORD     | PASSWORD | Qobuz account password |
-| QOBUZ_FORMAT_ID     | 5 | The Qobuz format identifier, i.e. a number which chooses the format and quality to be requested from Qobuz. The default is “5” (320 kbit/s MP3) |
-| TIDAL_PLUGIN_ENABLED       | no             | Enables the Tidal Plugin. Note that it seems to be currently defunct: see the mpd official documentation. |
-| TIDAL_APP_TOKEN     | TOKEN | The Tidal application token. Since Tidal is unwilling to assign a token to MPD, this needs to be reverse-engineered from another (approved) Tidal client. |
-| TIDAL_USERNAME     | USERNAME | Tidal Username |
-| TIDAL_PASSWORD     | PASSWORD | Tidal password |
-| TIDAL_AUDIOQUALITY     | Q | 	The Tidal “audioquality” parameter. Possible values: HI_RES, LOSSLESS, HIGH, LOW. Default is HIGH. |
-| STARTUP_DELAY_SEC   | 0 | Delay before starting the application. This can be useful if your container is set up to start automatically, so that you can resolve race conditions with mpd and with squeezelite if all those services run on the same audio device. I experienced issues with my Asus Tinkerboard, while the Raspberry Pi has never really needed this. Your mileage may vary. Feel free to report your personal experience. |
+VARIABLE|DEFAULT|NOTES
+---|---|---
+REPLAYGAIN_MODE|0|ReplayGain mode
+REPLAYGAIN_PREAMP|0|ReplayGain Preamp
+REPLAYGAIN_MISSING_PREAMP|0|ReplayGain mising preamp
+REPLAYGAIN_LIMIT|yes|ReplayGain Limit
+VOLUME_NORMALIZATION|no|Volume normalization
+QOBUZ_PLUGIN_ENABLED|no|Enables the Qobuz plugin
+QOBUZ_APP_ID|ID|Qobuz application id
+QOBUZ_APP_SECRET|SECRET|Your Qobuz application Secret
+QOBUZ_USERNAME|USERNAME|Qobuz account username
+QOBUZ_PASSWORD|PASSWORD|Qobuz account password
+QOBUZ_FORMAT_ID|5|The Qobuz format identifier, i.e. a number which chooses the format and quality to be requested from Qobuz. The default is “5” (320 kbit/s MP3)
+TIDAL_PLUGIN_ENABLED|no|Enables the Tidal Plugin. Note that it seems to be currently defunct: see the mpd official documentation.
+TIDAL_APP_TOKEN|TOKEN|The Tidal application token. Since Tidal is unwilling to assign a token to MPD, this needs to be reverse-engineered from another (approved) Tidal client.
+TIDAL_USERNAME|USERNAME|Tidal Username
+TIDAL_PASSWORD|PASSWORD|Tidal password
+TIDAL_AUDIOQUALITY|Q|The Tidal “audioquality” parameter. Possible values: HI_RES, LOSSLESS, HIGH, LOW. Default is HIGH.
+STARTUP_DELAY_SEC|0|Delay before starting the application. This can be useful if your container is set up to start automatically, so that you can resolve race conditions with mpd and with squeezelite if all those services run on the same audio device. I experienced issues with my Asus Tinkerboard, while the Raspberry Pi has never really needed this. Your mileage may vary. Feel free to report your personal experience.
 
 ## Build
 
@@ -95,4 +94,3 @@ You can build (or rebuild) the image by opening a terminal from the root of the 
 
 It will take very little time even on a Raspberry Pi. When it's finished, you can run the container following the previous instructions.  
 Just be careful to use the tag you have built.
-
