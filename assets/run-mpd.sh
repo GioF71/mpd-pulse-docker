@@ -16,6 +16,18 @@ if [ ! -d "$HOME_DIR" ]; then
   ls -la $HOME_DIR
 fi
 
+echo "Creating music directory"
+mkdir -p "/music"
+chown -R $PUID:$PGID $HOME_DIR
+
+echo "Creating playlists directory"
+mkdir -p "/playlists"
+chown -R $PUID:$PGID "/playlists"
+
+echo "Creating db directory"
+mkdir -p "/db"
+chown -R $PUID:$PGID "db"
+
 ### create group
 if [ ! $(getent group $GROUP_NAME) ]; then
   echo "group $GROUP_NAME does not exist, creating..."

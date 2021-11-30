@@ -76,6 +76,8 @@ The following tables reports all the currently supported environment variables.
 
 VARIABLE|DEFAULT|NOTES
 ---|---|---
+PUID|1000|The uid of your user
+PGID|1000|The gid of your user
 REPLAYGAIN_MODE|0|ReplayGain mode
 REPLAYGAIN_PREAMP|0|ReplayGain Preamp
 REPLAYGAIN_MISSING_PREAMP|0|ReplayGain mising preamp
