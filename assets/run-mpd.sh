@@ -58,8 +58,6 @@ cp /app/assets/mpd-template.conf /etc/mpd.conf
 
 sed -i 's/USER_NAME/'"$USER_NAME"'/g' /etc/mpd.conf
 
-cat /etc/mpd.conf
-
 sed -i 's/QOBUZ_PLUGIN_ENABLED/'"$QOBUZ_PLUGIN_ENABLED"'/g' /etc/mpd.conf
 sed -i 's/QOBUZ_APP_ID/'"$QOBUZ_APP_ID"'/g' /etc/mpd.conf
 sed -i 's/QOBUZ_APP_SECRET/'"$QOBUZ_APP_SECRET"'/g' /etc/mpd.conf
