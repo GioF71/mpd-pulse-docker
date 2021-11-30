@@ -57,6 +57,7 @@ cat $PULSE_CLIENT_CONF
 cp /app/assets/mpd-template.conf /etc/mpd.conf
 
 sed -i 's/USER_NAME/'"$USER_NAME"'/g' /etc/mpd.conf
+sed -i 's/OUTPUT_NAME/'"$OUTPUT_NAME"'/g' /etc/mpd.conf
 
 sed -i 's/QOBUZ_PLUGIN_ENABLED/'"$QOBUZ_PLUGIN_ENABLED"'/g' /etc/mpd.conf
 sed -i 's/QOBUZ_APP_ID/'"$QOBUZ_APP_ID"'/g' /etc/mpd.conf
@@ -83,4 +84,4 @@ echo "About to sleep for $STARTUP_DELAY_SEC second(s)"
 sleep $STARTUP_DELAY_SEC
 echo "Ready to start."
 
-su - $USER_NAME -c "/usr/bin/mpd --stderr --no-daemon /etc/mpd.conf"
+su - $USER_NAME -c "/usr/bin/mpd --no-daemon /etc/mpd.conf"

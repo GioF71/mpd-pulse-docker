@@ -50,21 +50,44 @@ You may want to pull the "stable" image as opposed to the "latest".
 You can start mpd-pulse by simply typing:
 
 ```text
-    docker run --rm -it --name=mpd-pulse \
+docker run --rm -it --name=mpd-pulse \
     -p 6600:6600 \
     -e PUID=$(id -u) \
     -e PGID=$(id -g) \
     -v /run/user/$(id -u)/pulse:/run/user/$(id -u)/pulse \
-    -v /mnt/music:/music:ro \
-    -v ${HOME}/mpd-playlists:/playlists \
-    -v ${HOME}/mpd-db:/db \
-    giof71/mpd-pulse:2021-11-29
+    -v ${HOME}/Music:/music:ro \
+    -v ${HOME}/.mpd/playlists:/playlists \
+    -v ${HOME}/.mpd/db:/db \
+    giof71/mpd-pulse:stable
+```
+
+You might prefer to use `docker-compose`.
+The following example assumes your username is `me` and your uid and gid are both `1000`:
+
+```text
+---
+version: "3"
+services:
+  mpd-pulse:
+    image: giof71/mpd-pulse:stable
+    container_name: mpd-pulse
+    ports:
+      - 6600:6600
+    environment:
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - /run/user/1000/pulse:/run/user/1000/pulse
+      - /home/me/Music:/music:ro
+      - /home/me/.mpd/db:/db
+      - /home/me/.mpd/playlists:/playlists
+    restart: unless-stopped
 ```
 
 Note that we need to allow the container to access the pulseaudio by mounting `/run/user/$(id -u)/pulse`, which typically translates to `/run/user/1000/pulse`.  
-We also need to give access to port 6600 so we can control the newly created mpd instance with our favourite mpd client.
+We also need to give access to port `6600` so we can control the newly created mpd instance with our favourite mpd client.
 
-The following tables reports the volumes
+The following tables list the volumes:
 
 VOLUME|DESCRIPTION
 ---|---
@@ -78,7 +101,8 @@ VARIABLE|DEFAULT|NOTES
 ---|---|---
 PUID|1000|The uid of your user
 PGID|1000|The gid of your user
-REPLAYGAIN_MODE|0|ReplayGain mode
+OUTPUT_NAME|mpd-pulse|PulseAudio output name
+REPLAYGAIN_MODE|0|ReplayGain Mode
 REPLAYGAIN_PREAMP|0|ReplayGain Preamp
 REPLAYGAIN_MISSING_PREAMP|0|ReplayGain mising preamp
 REPLAYGAIN_LIMIT|yes|ReplayGain Limit
