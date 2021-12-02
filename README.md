@@ -81,7 +81,6 @@ services:
       - /home/me/Music:/music:ro
       - /home/me/.mpd/db:/db
       - /home/me/.mpd/playlists:/playlists
-    restart: unless-stopped
 ```
 
 Note that we need to allow the container to access the pulseaudio by mounting `/run/user/$(id -u)/pulse`, which typically translates to `/run/user/1000/pulse`.  
