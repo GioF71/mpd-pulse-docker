@@ -9,6 +9,7 @@ First and foremost, the reference to the awesome project:
 This work is inspired by [TheBiggerGuy](https://github.com/TheBiggerGuy)'s [docker-pulse-audio-example](https://github.com/TheBiggerGuy/docker-pulseaudio-example).
 Without the content of that repo, I could not have created this project.
 So thank you!
+
 ## Links
 
 Source: [GitHub](https://github.com/giof71/mpd-pulse-docker)  
