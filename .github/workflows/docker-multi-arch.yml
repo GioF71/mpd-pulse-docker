@@ -24,7 +24,7 @@ jobs:
                 base="focal"
                 distro_id=${base}
                 mpd_version="mpd-0.21.20-";
-                tags="${{secrets.DOCKER_USERNAME}}/mpd-pulse:${mpd_version}${distro_id},${{secrets.DOCKER_USERNAME}}/mpd-pulse:${mpd_version}${distro_id}-${date},${{secrets.DOCKER_USERNAME}}/mpd-pulse:${distro_id},${{secrets.DOCKER_USERNAME}}/mpd-pulse:stable,${{secrets.DOCKER_USERNAME}}/mpd-pulse:latest"
+                tags="${{secrets.DOCKER_USERNAME}}/mpd-pulse:${mpd_version}${distro_id},${{secrets.DOCKER_USERNAME}}/mpd-pulse:${mpd_version}${distro_id}-${date},${{secrets.DOCKER_USERNAME}}/mpd-pulse:${mpd_version}${date},${{secrets.DOCKER_USERNAME}}/mpd-pulse:${distro_id},${{secrets.DOCKER_USERNAME}}/mpd-pulse:${date},${{secrets.DOCKER_USERNAME}}/mpd-pulse:stable,${{secrets.DOCKER_USERNAME}}/mpd-pulse:latest"
                 echo "RELEASE_TAGS=${tags}" >> $GITHUB_ENV
         -
             name: Set up QEMU
