@@ -116,7 +116,7 @@ Available Ports:
 Port|Description
 :---|:---
 6600|Music Player Daemon port for clients
-8000|HTTPD streaming port
+8000|HTTPD streaming port (use when MPD_PULSE_ENABLE_HTTPD=yes)
 
 The following tables list the volumes:
 
