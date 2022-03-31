@@ -53,6 +53,7 @@ You can start mpd-pulse by simply typing:
 ```text
 docker run --rm -it --name=mpd-pulse \
     -p 6600:6600 \
+    #-p 8000:8000 \
     -e PUID=$(id -u) \
     -e PGID=$(id -g) \
     -v /run/user/$(id -u)/pulse:/run/user/$(id -u)/pulse \
@@ -74,6 +75,7 @@ services:
     container_name: mpd-pulse
     ports:
       - 6600:6600
+      #- 8000:8000
     environment:
       - PUID=1000
       - PGID=1000
@@ -86,6 +88,7 @@ services:
 
 Note that we need to allow the container to access the pulseaudio by mounting `/run/user/$(id -u)/pulse`, which typically translates to `/run/user/1000/pulse`.  
 We also need to give access to port `6600` so we can control the newly created mpd instance with our favourite mpd client.
+If HTTPD output is enabled, we also need to give access to port `8000`.
 
 The following tables list the volumes:
 
@@ -118,6 +121,10 @@ TIDAL_APP_TOKEN|TOKEN|The Tidal application token. Since Tidal is unwilling to a
 TIDAL_USERNAME|USERNAME|Tidal Username
 TIDAL_PASSWORD|PASSWORD|Tidal password
 TIDAL_AUDIOQUALITY|Q|The Tidal “audioquality” parameter. Possible values: HI_RES, LOSSLESS, HIGH, LOW. Default is HIGH.
+MPD_PULSE_ENABLE_HTTPD|no|Enable HTTPD output (Remember to also expose port 8000 if you enable HTTPD)
+MPD_PULSE_HTTPD_NAME|MPD_PULSE_HTTPD|HTTPD output name
+MPD_PULSE_HTTPD_ALWAYS_ON|yes|HTTPD Always on
+MPD_PULSE_HTTPD_TAGS|yes|HTTPD Tags
 STARTUP_DELAY_SEC|0|Delay before starting the application. This can be useful if your container is set up to start automatically, so that you can resolve race conditions with mpd and with squeezelite if all those services run on the same audio device. I experienced issues with my Asus Tinkerboard, while the Raspberry Pi has never really needed this. Your mileage may vary. Feel free to report your personal experience.
 
 ## Build

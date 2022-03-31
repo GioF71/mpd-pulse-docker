@@ -8,14 +8,18 @@ RUN rm -rf /var/lib/apt/lists/*
 
 RUN mkdir /app/assets -p
 
-COPY assets/pulse-client-template.conf /app/assets/pulse-client-template.conf
-COPY assets/mpd-template.conf /app/assets/mpd-template.conf
+COPY app/assets/pulse-client-template.conf /app/assets/pulse-client-template.conf
+COPY app/assets/mpd-template-initial.conf /app/assets/
+COPY app/assets/mpd-template-pulse-output.conf /app/assets/
+COPY app/assets/mpd-template-httpd-output.conf /app/assets/
+COPY app/assets/mpd-template-final.conf /app/assets/
 
 VOLUME /music
 VOLUME /playlists
 VOLUME /db
 
 EXPOSE 6600
+EXPOSE 8000
 
 ENV PUID 1000
 ENV PGID 1000
@@ -41,9 +45,14 @@ ENV REPLAYGAIN_MISSING_PREAMP 0
 ENV REPLAYGAIN_LIMIT yes
 ENV VOLUME_NORMALIZATION no
 
+ENV MPD_PULSE_ENABLE_HTTPD no
+ENV MPD_PULSE_HTTPD_NAME ""
+ENV MPD_PULSE_HTTPD_ALWAYS_ON ""
+ENV MPD_PULSE_HTTPD_TAGS ""
+
 ENV STARTUP_DELAY_SEC 0
 
-COPY assets/run-mpd.sh /app/run-mpd.sh
+COPY app/bin/run-mpd.sh /app/run-mpd.sh
 RUN chmod 755 /app/run-mpd.sh
 
 ENTRYPOINT ["/app/run-mpd.sh"]
