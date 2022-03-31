@@ -22,7 +22,6 @@ jobs:
             run: |
                 date=$(date '+%Y-%m-%d')
                 base="$(cut -d ':' -f2 <<< '${{ matrix.base }}')"
-                base="$(cut -d '-' -f1 <<< ${base})"
                 mpd_version=""
                 distro_id=${base}
                 mpd_version="mpd-0.21.20-";
