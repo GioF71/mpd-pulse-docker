@@ -21,10 +21,17 @@ jobs:
             name: Set Release Tag
             run: |
                 date=$(date '+%Y-%m-%d')
-                base="focal"
-                distro_id=${base}
-                mpd_version="mpd-0.21.20-";
-                tags="${{secrets.DOCKER_USERNAME}}/mpd-pulse:${mpd_version}${distro_id},${{secrets.DOCKER_USERNAME}}/mpd-pulse:${mpd_version}${distro_id}-${date},${{secrets.DOCKER_USERNAME}}/mpd-pulse:${mpd_version}${date},${{secrets.DOCKER_USERNAME}}/mpd-pulse:${distro_id},${{secrets.DOCKER_USERNAME}}/mpd-pulse:${date},${{secrets.DOCKER_USERNAME}}/mpd-pulse:stable,${{secrets.DOCKER_USERNAME}}/mpd-pulse:latest"
+                distro_id="focal"
+                mpd_version="mpd-0.21.20";
+                tags="${{secrets.DOCKER_USERNAME}}/mpd-pulse:${mpd_version}-${distro_id}-${date}"
+                #tags="${tags},${{secrets.DOCKER_USERNAME}}/mpd-pulse:${mpd_version}-${distro_id}"
+                #tags="${tags},${{secrets.DOCKER_USERNAME}}/mpd-pulse:${mpd_version}-${date}"
+                tags="${tags},${{secrets.DOCKER_USERNAME}}/mpd-pulse:${mpd_version}"
+                #tags="${tags},${{secrets.DOCKER_USERNAME}}/mpd-pulse:${distro_id}-${date}"
+                tags="${tags},${{secrets.DOCKER_USERNAME}}/mpd-pulse:${distro_id}"
+                tags="${tags},${{secrets.DOCKER_USERNAME}}/mpd-pulse:${date}"
+                tags="${tags},${{secrets.DOCKER_USERNAME}}/mpd-pulse:stable"
+                tags="${tags},${{secrets.DOCKER_USERNAME}}/mpd-pulse:latest"
                 echo "RELEASE_TAGS=${tags}" >> $GITHUB_ENV
         -
             name: Set up QEMU
