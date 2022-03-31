@@ -1,4 +1,5 @@
-FROM giof71/mpd-base-image:ubuntu-focal
+ARG BASE_IMAGE
+FROM ${BASE_IMAGE} AS base
 
 RUN apt-get update
 
