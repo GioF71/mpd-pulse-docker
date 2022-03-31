@@ -53,7 +53,6 @@ You can start mpd-pulse by simply typing:
 ```text
 docker run --rm -it --name=mpd-pulse \
     -p 6600:6600 \
-    #-p 8000:8000 \
     -e PUID=$(id -u) \
     -e PGID=$(id -g) \
     -v /run/user/$(id -u)/pulse:/run/user/$(id -u)/pulse \
@@ -75,7 +74,6 @@ services:
     container_name: mpd-pulse
     ports:
       - 6600:6600
-      #- 8000:8000
     environment:
       - PUID=1000
       - PGID=1000
@@ -90,6 +88,36 @@ Note that we need to allow the container to access the pulseaudio by mounting `/
 We also need to give access to port `6600` so we can control the newly created mpd instance with our favourite mpd client.
 If HTTPD output is enabled, we also need to give access to port `8000`.
 
+Another example, with HTTPD streaming active:
+
+```text
+---
+version: "3"
+services:
+  mpd-pulse:
+    image: giof71/mpd-pulse:stable
+    container_name: mpd-pulse
+    ports:
+      - 6600:6600
+      - 8000:8000
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - MPD_PULSE_ENABLE_HTTPD=yes
+    volumes:
+      - /run/user/1000/pulse:/run/user/1000/pulse
+      - /home/me/Music:/music:ro
+      - /home/me/.mpd/db:/db
+      - /home/me/.mpd/playlists:/playlists
+```
+
+Available Ports:
+
+Port|Description
+:---|:---
+6600|Music Player Daemon port for clients
+8000|HTTPD streaming port
+
 The following tables list the volumes:
 
 VOLUME|DESCRIPTION
@@ -101,7 +129,7 @@ VOLUME|DESCRIPTION
 The following tables reports all the currently supported environment variables.
 
 VARIABLE|DEFAULT|NOTES
----|---|---
+:---|:---:|:---
 PUID|1000|The uid of your user
 PGID|1000|The gid of your user
 OUTPUT_NAME|mpd-pulse|PulseAudio output name
