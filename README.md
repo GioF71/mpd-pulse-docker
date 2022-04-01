@@ -149,10 +149,10 @@ TIDAL_APP_TOKEN|TOKEN|The Tidal application token. Since Tidal is unwilling to a
 TIDAL_USERNAME|USERNAME|Tidal Username
 TIDAL_PASSWORD|PASSWORD|Tidal password
 TIDAL_AUDIOQUALITY|Q|The Tidal “audioquality” parameter. Possible values: HI_RES, LOSSLESS, HIGH, LOW. Default is HIGH.
-MPD_PULSE_ENABLE_HTTPD|no|Enable HTTPD output (Remember to also expose port 8000 if you enable HTTPD)
+MPD_PULSE_ENABLE_HTTPD|no|Enable HTTPD output. Values to enable: `y` or `yes`, case insentive. Remember to also expose port 8000 if you enable HTTPD.
 MPD_PULSE_HTTPD_NAME|MPD_PULSE_HTTPD|HTTPD output name
-MPD_PULSE_HTTPD_ALWAYS_ON|yes|HTTPD Always on
-MPD_PULSE_HTTPD_TAGS|yes|HTTPD Tags
+MPD_PULSE_HTTPD_ALWAYS_ON|yes|HTTPD Always on. Values to enable: `y` or `yes`, case insentive.
+MPD_PULSE_HTTPD_TAGS|yes|HTTPD Tags. Values to enable: `y` or `yes`, case insentive.
 STARTUP_DELAY_SEC|0|Delay before starting the application. This can be useful if your container is set up to start automatically, so that you can resolve race conditions with mpd and with squeezelite if all those services run on the same audio device. I experienced issues with my Asus Tinkerboard, while the Raspberry Pi has never really needed this. Your mileage may vary. Feel free to report your personal experience.
 
 ## Caveat
@@ -174,6 +174,10 @@ Just be careful to use the tag you have built.
 
 Release Date|Major Changes
 ---|---
+2022-04-01|Clarified doc for httpd-related environment variables
+2022-04-01|Removed unused full template
+2022-04-01|Fixed script checking wrong variable for httpd not enabled
+2022-04-01|Validation for httpd-related environment variables
 2022-04-01|Remove spurious files related to incomplete feature
 2022-04-01|Add version history
 2022-04-01|Updated documentation with warning about restart policies

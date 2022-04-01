@@ -91,16 +91,30 @@ else
     httpd_always_on=$MPD_PULSE_HTTPD_ALWAYS_ON
     if [ -z "${httpd_always_on}" ]; then
       httpd_always_on="yes"
+    else
+      check=${httpd_always_on^^}
+      if [[ "$check" == "Y" || "$check" == "YES" ]]; then
+        httpd_always_on="yes"
+      else
+        httpd_always_on="no"
+      fi
     fi
     httpd_tags=$MPD_PULSE_HTTPD_TAGS
     if [ -z "${httpd_tags}" ]; then
       httpd_tags="yes"
+    else
+      check=${httpd_tags^^}
+      if [[ "$check" == "Y" || "$check" == "YES" ]]; then
+        httpd_tags="yes"
+      else
+        httpd_tags="no"
+      fi
     fi
     sed -i 's/MPD_PULSE_HTTPD_NAME/'"$httpd_name"'/g' /etc/mpd.conf
     sed -i 's/MPD_PULSE_HTTPD_ALWAYS_ON/'"$httpd_always_on"'/g' /etc/mpd.conf
     sed -i 's/MPD_PULSE_HTTPD_TAGS/'"$httpd_tags"'/g' /etc/mpd.conf
   else 
-    if [ "$linear" == "N" ]; then
+    if [ "$enable_httpd" == "N" ]; then
       echo "Variable MPD_PULSE_ENABLE_HTTPD set to disabled.";
     else
       echo "Variable MPD_PULSE_ENABLE_HTTPD invalid value: $MPD_PULSE_ENABLE_HTTPD";
