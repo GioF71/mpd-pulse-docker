@@ -121,7 +121,7 @@ Port|Description
 The following tables list the volumes:
 
 VOLUME|DESCRIPTION
----|---
+:---|:---
 /db|Where the mpd database is saved
 /music|Where the music is stored. you might consider to mount your directory in read-only mode (`:ro`)
 /playlists|Where the playlists are stored
@@ -173,7 +173,7 @@ Just be careful to use the tag you have built.
 ## Release History
 
 Release Date|Major Changes
----|---
+:---|:---
 2022-04-01|Clarified doc for httpd-related environment variables
 2022-04-01|Removed unused full template
 2022-04-01|Fixed script checking wrong variable for httpd not enabled
