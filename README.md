@@ -174,6 +174,7 @@ Just be careful to use the tag you have built.
 
 Release Date|Major Changes
 ---|---
+2022-04-01|Remove spurious files related to incomplete feature
 2022-04-01|Add version history
 2022-04-01|Updated documentation with warning about restart policies
 2022-04-01|Add `README.md` to the image at path `/app/doc`
