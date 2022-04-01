@@ -120,7 +120,7 @@ Port|Description
 
 The following tables list the volumes:
 
-VOLUME|DESCRIPTION
+Volume|Description
 :---|:---
 /db|Where the mpd database is saved
 /music|Where the music is stored. you might consider to mount your directory in read-only mode (`:ro`)
@@ -128,7 +128,7 @@ VOLUME|DESCRIPTION
 
 The following tables reports all the currently supported environment variables.
 
-VARIABLE|DEFAULT|NOTES
+Variable|Default|Description
 :---|:---:|:---
 PUID|1000|The uid of your user
 PGID|1000|The gid of your user
