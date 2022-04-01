@@ -155,6 +155,12 @@ MPD_PULSE_HTTPD_ALWAYS_ON|yes|HTTPD Always on
 MPD_PULSE_HTTPD_TAGS|yes|HTTPD Tags
 STARTUP_DELAY_SEC|0|Delay before starting the application. This can be useful if your container is set up to start automatically, so that you can resolve race conditions with mpd and with squeezelite if all those services run on the same audio device. I experienced issues with my Asus Tinkerboard, while the Raspberry Pi has never really needed this. Your mileage may vary. Feel free to report your personal experience.
 
+## Caveat
+
+Careful adding a restart policy to the container, as it needs pulseaudio. I am in no way a linux expert, but I can report that I had issues when I added `restart: unless-stopped` to my compose file. My whole desktop (Gnome at the time of the issue happening) had all sorts of audio-related issues.  
+If might be better to create a user-level systemd service, and maybe a script which could automate retrieving the uid/gid for easy installation.  
+This feature is something I would like to add, although I cannot provide an estimate of the availability date.  Of course, contributions are welcome.
+
 ## Build
 
 You can build (or rebuild) the image by opening a terminal from the root of the repository and issuing the following command:
@@ -163,3 +169,13 @@ You can build (or rebuild) the image by opening a terminal from the root of the 
 
 It will take very little time even on a Raspberry Pi. When it's finished, you can run the container following the previous instructions.  
 Just be careful to use the tag you have built.
+
+## Release History
+
+Release Date|Major Changes
+---|---
+2022-04-01|Add version history
+2022-04-01|Updated documentation with warning about restart policies
+2022-04-01|Add `README.md` to the image at path `/app/doc`
+2022-03-31|Implemented optional httpd-output
+2022-03-31|Base Image Bump|Bump to mpd-base-image:focal built on 2022-03-31

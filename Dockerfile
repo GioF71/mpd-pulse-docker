@@ -56,4 +56,7 @@ ENV STARTUP_DELAY_SEC 0
 COPY app/bin/run-mpd.sh /app/run-mpd.sh
 RUN chmod 755 /app/run-mpd.sh
 
+RUN mkdir -p /app/doc
+COPY README.md /app/doc/
+
 ENTRYPOINT ["/app/run-mpd.sh"]
