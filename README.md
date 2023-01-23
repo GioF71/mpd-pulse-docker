@@ -1,4 +1,6 @@
-# mpd-pulse-docker - a Docker image for mpd with PulseAudio
+# mpd-pulse-docker
+
+A Docker image for mpd with PulseAudio
 
 ## Reference
 
